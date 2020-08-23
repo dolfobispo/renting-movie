@@ -1,0 +1,60 @@
+﻿    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 btn-add-movie"><p><a routerLink="add">Adicionar Filme</a></p></div>
+            <div class="col-lg-9">
+                <div class="lg-form mt-0">
+                    <input class="form-control" type="text" placeholder="Buscar Filmes" aria-label="Search" [(ngModel)]="filter"> 
+                  </div>
+            </div>    
+        </div>
+       
+    </div>
+    
+    <div class="movie-container">
+        <div *ngFor="let movie of filteredMovies">
+            <div class="movie-card">
+                
+                <img class="movie-header" [ngStyle]="{background: movie.poster_path | bgUrl}"/>
+              
+                <div class="movie-content">
+                    <div class="movie-content-header">
+                        <a href="#">
+                            <h3 class="movie-title">{{movie.title}}</h3>
+                        </a>
+                        <a routerLink="edit/{{movie.id}}" class="btn btn-outline-primary btn-edit-movie">Editar</a>
+                    </div>
+                </div><!--movie-content-->
+            </div><!--movie-card-->
+        </div>
+       
+
+<!--<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 30%">Titulo</th>
+            <th style="width: 30%">Descrição</th>
+            <th style="width: 30%">Preço</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let movie of movies">
+            <td>{{movie.title}}</td>
+            <td>{{movie.overview}}</td>
+            <td>{{movie.rent_price | currency:'BRL':true:'1.2-2'}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{movie.id}}" class="btn btn-sm btn-primary mr-1">Editar</a>
+                <button (click)="deleteMovie(movie.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="movie.isDeleting">
+                    <span *ngIf="movie.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!movie.isDeleting">Deletar</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!movies">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+-->
