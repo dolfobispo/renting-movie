@@ -1,34 +1,37 @@
-﻿    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 btn-add-movie"><p><a routerLink="add">Adicionar Filme</a></p></div>
-            <div class="col-lg-9">
-                <div class="lg-form mt-0">
-                    <input class="form-control" type="text" placeholder="Buscar Filmes" aria-label="Search" [(ngModel)]="filter"> 
-                  </div>
-            </div>    
-        </div>
-       
+﻿<div class="container">
+    <div class="row">
+       <div class="col-lg-2 btn-add-movie">
+          <p><a routerLink="add">Cadastrar Filme</a></p>
+       </div>
+       <div class="col-lg-9">
+          <div class="lg-form mt-0">
+             <input class="form-control" type="text" placeholder="Buscar Filmes" aria-label="Search" [(ngModel)]="filter"> 
+          </div>
+       </div>
     </div>
-    
-    <div class="movie-container">
-        <div *ngFor="let movie of filteredMovies">
-            <div class="movie-card">
-                
-                <img class="movie-header" [ngStyle]="{background: movie.poster_path | bgUrl}"/>
-              
-                <div class="movie-content">
-                    <div class="movie-content-header">
-                        <a href="#">
-                            <h3 class="movie-title">{{movie.title}}</h3>
-                        </a>
-                        <a routerLink="edit/{{movie.id}}" class="btn btn-outline-primary btn-edit-movie">Editar</a>
-                    </div>
-                </div><!--movie-content-->
-            </div><!--movie-card-->
-        </div>
-       
-
-<!--<table class="table table-striped">
+ </div>
+ <div class="movie-container">
+    <div *ngFor="let movie of filteredMovies">
+       <div class="movie-card">
+          <img class="movie-header" [ngStyle]="{background: movie.poster_path | bgUrl}"/>
+          <div class="movie-content">
+             <div class="movie-content-header">
+                <a href="#">
+                   <h3 class="movie-title">{{movie.title}}</h3>
+                </a>
+                <div>
+                    <p class="card-price">{{movie.rent_price | currency:'BRL':true:'1.2-2' }}</p>
+                    <button class="add-cart-button" (click)="addToCart(movie)"*ngIf="!movieInCart(movie)" >Adicionar ao carrinho</button>
+                    <button class="remove-cart-button" (click)="removeToCart(movie)"*ngIf="movieInCart(movie)">Remover da lista</button>
+                  </div>
+             </div>
+          </div>
+          <!--movie-content-->
+       </div>
+       <!--movie-card-->
+    </div>
+ </div>
+ <!--<table class="table table-striped">
     <thead>
         <tr>
             <th style="width: 30%">Titulo</th>
@@ -56,5 +59,5 @@
             </td>
         </tr>
     </tbody>
-</table>
--->
+    </table>
+    -->

@@ -64,6 +64,7 @@ a:hover {
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
   margin-top: 2em;
   max-width: 226px;
+  min-width: 226px;
   margin-right: 2em;
   border-radius: 10px;
   display: inline-block;
@@ -131,7 +132,6 @@ a:hover {
 }
 
 .movie-content {
-  padding: 18px 18px 24px 18px;
   margin: 0;
 }
 
@@ -141,40 +141,47 @@ a:hover {
 }
 
 .movie-title {
-  font-size: 24px;
+  text-align: center;
+  font-size: 18px;
   margin: 0;
-  display: table-cell;
+  padding:18px;
 }
 
 
-.movie-info {
-  margin-top: 1em;
-}
 
-.info-section {
-  display: table-cell;
-  text-transform: uppercase;
+.card-price {
+  color: grey;
+  font-size: 16px;
   text-align: center;
 }
 
-.info-section:first-of-type {
-  text-align: left;
+.add-cart-button {
+  padding: 12px;
+  border: none;
+  outline: 0;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
 }
 
-.info-section:last-of-type {
-  text-align: right;
+.remove-cart-button {
+  padding: 12px;
+  border: none;
+  outline: 0;
+  color: white;
+  background-color: rgb(218, 6, 6);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
 }
 
-.info-section label {
-  display: block;
-  color: rgba(0, 0, 0, 0.5);
-  margin-bottom: .5em;
-  font-size: 9px;
-}
 
-.info-section span {
-  font-weight: 700;
-  font-size: 11px;
+.card button:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 500px) {

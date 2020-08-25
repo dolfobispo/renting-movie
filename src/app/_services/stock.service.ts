@@ -4,32 +4,31 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '@environments/environment';
-import { User } from '@app/_models';
-import { Movie } from '../_models/movie';
+import { Stock } from '../_models/stock';
 
 @Injectable({ providedIn: 'root' })
-export class MovieService {
-    private movieSubject: BehaviorSubject<Movie>;
-    public movie: Observable<Movie>;
+export class StockService {
+    private stockSubject: BehaviorSubject<Stock>;
+    public stock: Observable<Stock>;
 
     constructor(
         private router: Router,
         private http: HttpClient
     ) {
-        this.movieSubject = new BehaviorSubject<Movie>(JSON.parse(localStorage.getItem('movie')));
-        this.movie = this.movieSubject.asObservable();
+        this.stockSubject = new BehaviorSubject<Stock>(JSON.parse(localStorage.getItem('stock')));
+        this.stock = this.stockSubject.asObservable();
     }
 
-    public get movieValue(): Movie {
-        return this.movieSubject.value;
+    public get movieValue(): Stock {
+        return this.stockSubject.value;
     }
 
-    getAll() {
-        return this.http.get<Movie[]>(`${environment.apiUrl}/movies`);
+    getAll(): Observable<Stock[]>{
+        return this.http.get<Stock[]>(`${environment.apiUrl}/stocks`);
     }
 
-    getById(id: string) {
-        return this.http.get<Movie>(`${environment.apiUrl}/movies/${id}`);
+    getById(id: string): Observable<Stock> {
+        return this.http.get<Stock>(`${environment.apiUrl}/stocks/${id}`);
     }
 
     /*
