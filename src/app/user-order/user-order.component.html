@@ -1,0 +1,24 @@
+<form class="form-inline" [formGroup]="form" (ngSubmit) = "onSubmit()">
+    <div class="form-group mx-sm-4 mb-2">
+      <input type="text" class="form-control" maxlength="11" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" formControlName="cpf" placeholder="CPF do cliente">
+      <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
+        <div *ngIf="f.cpf.errors.required">Por favor, Digite o CPF</div>
+        <div *ngIf="f.cpf.errors.minlength">Digite o CPF corretamente ( 11 números )</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Buscar</button> 
+</form>
+
+<form>
+    <div class="form-row">
+      <div class="form-group mx-sm-4 mb-2">
+        <label for="inputEmail4">Nome</label>
+        <input type="text" class="form-control"  placeholder="" value="{{user.name}}" disabled>
+      </div>
+      <div class="form-group mx-sm-4 mb-2">
+        <label for="inputPassword4">Sobrenome</label>
+        <input type="text" class="form-control" value="{{user.lastName}}" placeholder="" disabled>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Ir para pagamento</button>
+  </form>

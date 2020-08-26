@@ -1,7 +1,7 @@
-import { Movie } from './movie';
+import { Product } from './Product';
 
 export class Stock {
     id: number;
-    movie: Movie;
+    Product: Product;
     quantity: number;
 }

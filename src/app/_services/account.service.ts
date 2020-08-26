@@ -53,6 +53,9 @@ export class AccountService {
     getById(id: string) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
     }
+    findUserByCpf(cpf: string) {
+        return this.http.get<User>(`${environment.apiUrl}/users?cpf=${cpf}`);
+    }
 
     update(id, params) {
         return this.http.put(`${environment.apiUrl}/users/${id}`, params)

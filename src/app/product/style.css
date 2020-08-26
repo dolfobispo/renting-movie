@@ -35,7 +35,7 @@ a:hover {
   color: #007bff;
 }
 
-.movie-container {
+.product-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -59,7 +59,7 @@ a:hover {
     border-color: #343a40;
     border-radius: .99rem;
 }
-.movie-card {
+.product-card {
   background: #ffffff;
   box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
   margin-top: 2em;
@@ -70,7 +70,7 @@ a:hover {
   display: inline-block;
 }
 
-.movie-header {
+.product-header {
   background-size: cover!important;
   background-position: center!important;
   padding: 0;
@@ -84,14 +84,14 @@ a:hover {
 .header-icon-container {
   position: relative;
 }
-.btn-add-movie{
+.btn-add-product{
   color: #007bff;
 }
-.btn-add-movie:hover{
+.btn-add-product:hover{
   text-decoration: underline;
   color: #007bff;
 }
-.btn-edit-movie{
+.btn-edit-product{
     margin-top: 15px;
     width: 150px;
     text-align: center;
@@ -99,7 +99,7 @@ a:hover {
     border-color: #43474a;
     
 }
-.btn-edit-movie:hover{
+.btn-edit-product:hover{
     background-color: #fff;
 }
 
@@ -125,54 +125,68 @@ a:hover {
   opacity: 1;
 }
 
-.movie-card:hover {
+.product-card:hover {
   -webkit-transform: scale(1.03);
           transform: scale(1.03);
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-.movie-content {
+.product-content {
   margin: 0;
 }
 
-.movie-content-header, .movie-info {
+.product-content-header, .product-info {
   display: table;
   width: 100%;
 }
 
-.movie-title {
+.product-title {
   text-align: center;
   font-size: 18px;
   margin: 0;
   padding:18px;
 }
 
-
+.header-info{
+  display: inline-block;
+}
 
 .card-price {
   color: grey;
   font-size: 16px;
-  text-align: center;
+  text-align: left;
+  margin-left: 18px;
+  padding: 6px;
 }
-
-.add-cart-button {
+.product-quantity,.product-unavailable{
+  color: rgb(9, 201, 9);
+  text-align: right;
+  font-size: 16px;
+  margin-left: 6px;
+  margin-right: 18px;
+  padding: 6px;
+}
+.product-unavailable{
+  color: rgb(189, 9, 9);
+}
+.btn-add-cart {
   padding: 12px;
   border: none;
   outline: 0;
   color: white;
-  background-color: #000;
+  background-color: #0074d9;
   text-align: center;
   cursor: pointer;
   width: 100%;
   font-size: 18px;
 }
 
-.remove-cart-button {
+.btn-remove-cart,.btn-product-unavailable {
   padding: 12px;
   border: none;
   outline: 0;
   color: white;
-  background-color: rgb(218, 6, 6);
+  background-color: rgb(189, 9, 9);
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -185,7 +199,7 @@ a:hover {
 }
 
 @media screen and (max-width: 500px) {
-  .movie-card {
+  .product-card {
     width: 95%;
     max-width: 95%;
     margin: 1em;

@@ -7,12 +7,14 @@ import { AuthGuard } from './_helpers';
 
 const accountModule = () => import('./account/account.module').then(x => x.AccountModule);
 const usersModule = () => import('./users/users.module').then(x => x.UsersModule);
-const moviesModule = () => import('./movies/movies.module').then(x => x.MoviesModule);
+const productsModule = () => import('./product/product.module').then(x => x.ProductModule);
+const orderModule = () => import('./order/order.module').then(x => x.OrderModule);
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'users', loadChildren: usersModule, canActivate: [AuthGuard] },
-    { path: 'movies', loadChildren: moviesModule, canActivate: [AuthGuard] },
+    { path: 'movies', loadChildren: productsModule, canActivate: [AuthGuard] },
+    { path: 'order', loadChildren: orderModule, canActivate: [AuthGuard]},
     { path: 'account', loadChildren: accountModule },
 
     // otherwise redirect to home

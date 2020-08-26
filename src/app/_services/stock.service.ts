@@ -19,7 +19,7 @@ export class StockService {
         this.stock = this.stockSubject.asObservable();
     }
 
-    public get movieValue(): Stock {
+    public get ProductValue(): Stock {
         return this.stockSubject.value;
     }
 
@@ -33,7 +33,7 @@ export class StockService {
 
     /*
     update(id, params) {
-        return this.http.put(`${environment.apiUrl}/movies/${id}`, params)
+        return this.http.put(`${environment.apiUrl}/Products/${id}`, params)
             .pipe(map(x => {
                 // update stored user if the logged in user updated their own record
                 if (id === this.userValue.id) {
