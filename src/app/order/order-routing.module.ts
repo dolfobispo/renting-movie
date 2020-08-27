@@ -4,6 +4,8 @@ import { OrderComponent } from './order.component';
 import { LayoutComponent } from './layout.component';
 import { UserOrderModule } from '../user-order/user-order.module';
 import { UserOrderComponent } from '../user-order/user-order.component';
+import { PaymentComponent } from '../payment/payment.component';
+import { AngularMaterialModule } from '../angular-material.module';
 
 const routes: Routes = [
     {
@@ -11,15 +13,15 @@ const routes: Routes = [
         children: [
             { path: '', component: OrderComponent },
             
-            { path: 'user-order', component: UserOrderComponent }
-            /*
-            { path: 'user/payment', component: AddEditComponent }
-            */
+            { path: 'user-order', component: UserOrderComponent },
+            
+            { path: 'user-order/payment', component: PaymentComponent }
+            
         ]
     }
 ];
 @NgModule({
-    imports: [RouterModule.forChild(routes), UserOrderModule],
-    exports: [RouterModule]
+    imports: [RouterModule.forChild(routes), UserOrderModule, AngularMaterialModule],
+    exports: [RouterModule, AngularMaterialModule]
 })
 export class OrderRoutingModule { }

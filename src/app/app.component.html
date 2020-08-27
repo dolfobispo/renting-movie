@@ -2,8 +2,8 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
     <div class="navbar-nav">
         <a class="nav-item nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Usuários</a>
         <a class="nav-item nav-link" routerLink="/movies" routerLinkActive="active">Filmes</a>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Usuários</a>
         <a class="nav-item nav-link" (click)="logout()">Sair</a>
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse1">

@@ -50,9 +50,14 @@
           <!-- End -->
         </div>
         <div class="col-lg-4">
-            <div class="bg-light rounded-pill px-4 py-4 text-uppercase font-weight-bold">Order summary </div>
+            <div class="bg-light rounded-pill px-4 py-4 text-uppercase font-weight-bold">Resumo do Pedido </div>
             <div class="p-4">
-              <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
+              <mat-form-field appearance="fill">
+                <mat-label>Data de Devolução</mat-label>
+                <input matInput [matDatepicker]="picker1" [min] = "minDate" [formControl]="dateFormControl">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
               <ul class="list-unstyled mb-4">
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Subtotal </strong><strong>{{getSubTotal() | currency:'BRL':true:'1.2-2' }}</strong></li>
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Taxas</strong><strong>0</strong></li>

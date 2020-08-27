@@ -1,24 +1,30 @@
-<form class="form-inline" [formGroup]="form" (ngSubmit) = "onSubmit()">
-    <div class="form-group mx-sm-4 mb-2">
-      <input type="text" class="form-control" maxlength="11" [ngClass]="{ 'is-invalid': submitted && f.cpf.errors }" formControlName="cpf" placeholder="CPF do cliente">
-      <div *ngIf="submitted && f.cpf.errors" class="invalid-feedback">
-        <div *ngIf="f.cpf.errors.required">Por favor, Digite o CPF</div>
-        <div *ngIf="f.cpf.errors.minlength">Digite o CPF corretamente ( 11 números )</div>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary mb-2">Buscar</button> 
-</form>
+<div class="col-md-6 offset-md-3 mt-5">
+    <form class="form-inline" [formGroup]="formSearch" (ngSubmit) = "onSubmit()">
+        <div class="form-group mx-sm-4 mb-2">
+          <input type="text" class="form-control" maxlength="11" [ngClass]="{ 'is-invalid': submitted && fs.cpf.errors }" formControlName="cpf" placeholder="CPF do cliente">
+          <div *ngIf="submitted && fs.cpf.errors" class="invalid-feedback">
+            <div *ngIf="fs.cpf.errors.required">Por favor, Digite o CPF</div>
+            <div *ngIf="fs.cpf.errors.minlength">Digite o CPF corretamente ( 11 números )</div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mb-2" *ngIf="!redoSearch">Buscar</button> 
+        <button type="button" class="btn btn-primary mb-2" *ngIf="redoSearch" (click)="enableSearch()">habilitar</button> 
+    </form>
 
-<form>
-    <div class="form-row">
-      <div class="form-group mx-sm-4 mb-2">
-        <label for="inputEmail4">Nome</label>
-        <input type="text" class="form-control"  placeholder="" value="{{user.name}}" disabled>
-      </div>
-      <div class="form-group mx-sm-4 mb-2">
-        <label for="inputPassword4">Sobrenome</label>
-        <input type="text" class="form-control" value="{{user.lastName}}" placeholder="" disabled>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Ir para pagamento</button>
-  </form>
+    <form [formGroup]="form">  
+        <div class="form-row" >
+          <div class="form-group mx-sm-4 mb-2">
+            <label for="name">Nome</label>
+            <input type="text" class="form-control"  formControlName="name" placeholder="" value="" disabled>
+          </div>
+          <div class="form-group mx-sm-4 mb-2">
+            <label for="lastName">Sobrenome</label>
+            <input type="text" class="form-control" value="" formControlName="lastName" placeholder="" disabled>
+          </div>
+        </div>
+        <div class="form-row">
+            <button type="button" class="btn btn-primary btn-block mt-3" [disabled]="f.name.errors" (click)="checkout()">Ir para Pagamento</button>
+        </div>
+        
+    </form>
+</div>

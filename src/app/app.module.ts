@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+﻿import { NgModule , CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -11,7 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AppComponent } from './app.component';
 import { AlertComponent } from './_components';
-import { HomeComponent } from './home';
+import { HomeComponent } from './home';;
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
     imports: [
@@ -19,6 +20,8 @@ import { HomeComponent } from './home';
         ReactiveFormsModule,
         HttpClientModule,
         AppRoutingModule
+,
+        BrowserAnimationsModule
     ],
     declarations: [
         AppComponent,
@@ -34,6 +37,7 @@ import { HomeComponent } from './home';
         fakeBackendProvider
         */
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { };

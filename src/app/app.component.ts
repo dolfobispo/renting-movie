@@ -12,8 +12,9 @@ export class AppComponent {
     constructor(private accountService: AccountService, private orderService: OrderService) {
         this.accountService.user.subscribe(x => this.user = x);
         this.order = this.orderService.orderValue;
-    }
     
+    }
+
     logout() {
         this.accountService.logout();
     }
