@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { UserOrderComponent } from './user-order.component';
+import { UserRentComponent } from './user-rent.component';
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import { UserOrderComponent } from './user-order.component';
         SharedModule
     ],
     declarations: [
-        UserOrderComponent
+        UserRentComponent
     ]
 })
-export class UserOrderModule { }
+export class UserRentModule { }

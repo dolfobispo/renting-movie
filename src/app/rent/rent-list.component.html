@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-lg-8 p-4 bg-white rounded shadow-sm mb-4">
 
-          <!-- Shopping order table -->
+          <!-- Shopping rent table -->
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -23,23 +23,23 @@
                 </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let item of order.items">
+                  <tr *ngFor="let item of rent.items">
                     <th scope="row">
                       <div class="p-2">
-                        <img src="/assets/images/{{item.product.poster_path}}"  alt="" width="70" class="img-fluid rounded shadow-sm">
+                        <img src="/assets/images/{{item.product.posterPath}}"  alt="" width="70" class="img-fluid rounded shadow-sm">
                         <div class="ml-3 d-inline-block align-middle">
                           <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">{{item.product.title}}</a></h5><span class="text-muted font-weight-normal font-italic">Category: Sem Categoria</span>
                         </div>
                       </div>
-                      <td class="align-middle"><strong>{{item.price | currency:'BRL':true:'1.2-2' }}</strong></td>
-                      <td class="align-middle"><strong>{{item.quantity}}</strong></td>
+                      <td class="align-middle"><strong>{{item.product.price | currency:'BRL':true:'1.2-2' }}</strong></td>
+                      <td class="align-middle"><strong>{{item.product.quantity}}</strong></td>
                       <td class="align-middle"><a (click)="removeToOrder(item.product)" class="text-dark"><i class="fa fa-trash"></i></a>
                       </td>
                   </tr>
               </tbody>
             </table>
           </div>
-          <div *ngIf="order.items.length == 0">
+          <div *ngIf="rent.items.length == 0">
             <div scope="row">
               <div class="p-5">
                 <h3> O Carrinho de Compras está vazio :(</h3>
@@ -58,13 +58,14 @@
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
+             
               <ul class="list-unstyled mb-4">
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Subtotal </strong><strong>{{getSubTotal() | currency:'BRL':true:'1.2-2' }}</strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Taxas</strong><strong>0</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Taxas</strong><strong>{{calcTaxes(minDate,dateFormControl.value)| currency:'BRL':true:'1.2-2'}}</strong></li>
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                  <h5 class="font-weight-bold">{{ getTotal() | currency:'BRL':true:'1.2-2' }}</h5>
+                  <h5 class="font-weight-bold">{{getTotal() | currency:'BRL':true:'1.2-2' }}</h5>
                 </li>
-              </ul><button class="btn btn-dark rounded-pill py-2 btn-block" routerLink="/order/user-order" [disabled]="order.items.length == 0">Preencher dados e Pagar</button>
+              </ul><button class="btn btn-dark rounded-pill py-2 btn-block" routerLink="/rent/user-rent" [disabled]="rent.items.length == 0">Preencher dados e Pagar</button>
             </div>
           </div>
       </div>

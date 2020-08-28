@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="form-row">
-            <button type="button" class="btn btn-primary btn-block mt-3" [disabled]="f.name.errors" (click)="checkout()">Ir para Pagamento</button>
+            <button type="button" class="btn btn-primary btn-block mt-3" [disabled]="f.name.errors || rent.items.length == 0" (click)="checkout()">Ir para Pagamento</button>
         </div>
         
     </form>

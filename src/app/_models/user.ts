@@ -1,11 +1,10 @@
-﻿import { Order } from './order';
-
+﻿import { Rent } from './rent';
 
 export class User{
     id: string;
     name: string;
     lastName: string;
     email: string;
-    orders: Order[];
+    orders: Rent[];
     token: string;
 }

@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { OrderService } from '../_services/order.service';
+import { RentService } from '../_services/rent.service';
 import { Product } from '../_models/product';
 import { ProductService } from '../_services/product.service';
 import { ProductItem } from '../_models/product-item';
@@ -10,11 +10,11 @@ import { ProductItem } from '../_models/product-item';
 @Component({ templateUrl: 'list.component.html', styleUrls: ['./style.css'] })
 export class ListComponent implements OnInit {
     products = null;
-    order = null;
+    rent = null;
     quantity = 1;
     filteredProducts: Product[] = [];
     _filterBy: string;
-    constructor(private productservice: ProductService, private orderService: OrderService) {}
+    constructor(private productservice: ProductService, private rentService: RentService) {}
     
     ngOnInit() {
         this.productservice.getAll()
@@ -23,17 +23,19 @@ export class ListComponent implements OnInit {
                 this.products = products;
                 this.filteredProducts = products;
             });
-        this.order = this.orderService.orderValue;
+        this.rentService.rent.subscribe(rent => this.rent = rent);
     }
-    addToOrder(product): void{
-        const item = new ProductItem(this.quantity, product.rent_price, product);
-        this.orderService.addToOrder(item);
+    addItemToRent(product): void{
+        const item = new ProductItem(this.quantity, product.price, product);
+        this.rent.items.push(item);
+        this.rentService.setRent(this.rent).subscribe(rent => this.rent = rent);
     }
-    removeToOrder(product){
-        this.order = this.orderService.removeToOrder(product);
+    removeToRent(product): void{
+        this.rent.items =  this.rent.items.filter(p => p.product.id  !== product.id );
+        this.rentService.setRent(this.rent).subscribe(rent => this.rent = rent);
     }
-    productInOrder(product){
-        const list = this.order.items.filter(item => item.product.id === product.id);
+    productInRent(product): boolean{
+        const list = this.rent.items.filter(item => item.product.id === product.id);
         return list.length > 0 ? true : false;
     }
     set filter(value: string){

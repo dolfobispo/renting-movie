@@ -13,7 +13,7 @@
  <div class="product-container">
     <div *ngFor="let product of filteredProducts">
        <div class="product-card">
-          <img class="product-header" [ngStyle]="{background: product.poster_path | bgUrl}"/>
+          <img class="product-header" [ngStyle]="{background: product.posterPath | bgUrl}"/>
           <div class="product-content">
              <div class="product-content-header">
                 <a href="#">
@@ -21,11 +21,11 @@
                 </a>
                 <div>
                    
-                    <div class="card-price header-info">{{product.rent_price | currency:'BRL':true:'1.2-2' }}</div>
+                    <div class="card-price header-info">{{product.price | currency:'BRL':true:'1.2-2' }}</div>
                     <div class="product-quantity header-info" *ngIf="product.stock.quantity > 0">{{product.stock.quantity}} Disponiveis</div>    
                     <div class="product-unavailable header-info" *ngIf="product.stock.quantity ==0">Indisponivel</div>
-                    <button class="btn-add-cart"  (click)="addToOrder(product)"*ngIf="!productInOrder(product) && product.stock.quantity > 0" >Adicionar ao carrinho</button>
-                    <button class="btn-remove-cart" (click)="removeToOrder(product)"*ngIf="productInOrder(product)">Remover da lista</button>
+                    <button class="btn-add-cart"  (click)="addItemToRent(product)"*ngIf="!productInRent(product) && product.stock.quantity > 0" >Adicionar ao carrinho</button>
+                    <button class="btn-remove-cart" (click)="removeToRent(product)"*ngIf="productInRent(product)">Remover da lista</button>
       
                   </div>
              </div>
@@ -35,33 +35,3 @@
        <!--product-card-->
     </div>
  </div>
- <!--<table class="table table-striped">
-    <thead>
-        <tr>
-            <th style="width: 30%">Titulo</th>
-            <th style="width: 30%">Descrição</th>
-            <th style="width: 30%">Preço</th>
-            <th style="width: 10%"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of products">
-            <td>{{product.title}}</td>
-            <td>{{product.overview}}</td>
-            <td>{{product.rent_price | currency:'BRL':true:'1.2-2'}}</td>
-            <td style="white-space: nowrap">
-                <a routerLink="edit/{{product.id}}" class="btn btn-sm btn-primary mr-1">Editar</a>
-                <button (click)="deleteproduct(product.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="product.isDeleting">
-                    <span *ngIf="product.isDeleting" class="spinner-border spinner-border-sm"></span>
-                    <span *ngIf="!product.isDeleting">Deletar</span>
-                </button>
-            </td>
-        </tr>
-        <tr *ngIf="!products">
-            <td colspan="4" class="text-center">
-                <span class="spinner-border spinner-border-lg align-center"></span>
-            </td>
-        </tr>
-    </tbody>
-    </table>
-    -->

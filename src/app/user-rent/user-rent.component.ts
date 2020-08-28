@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../_services/order.service';
-import { Order } from '../_models/order';
+import { RentService } from '../_services/rent.service';
 import { AccountService, AlertService } from '../_services';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { User } from '../_models/user';
 import { Router } from '@angular/router';
+import { Rent } from '../_models/rent';
 
-@Component({ templateUrl: 'user-order.component.html', styleUrls: ['./style.css'] })
-export class UserOrderComponent implements OnInit {
+@Component({ templateUrl: 'user-rent.component.html', styleUrls: ['./style.css'] })
+export class UserRentComponent implements OnInit {
     formSearch: FormGroup;
     form: FormGroup;
     submitted = false;
     user: User;
     redoSearch = false;
+    rent: Rent;
     constructor(
-        private orderService: OrderService,
+        private rentService: RentService,
         private userService: AccountService,
         private formBuilder: FormBuilder,
         private alertService: AlertService,
@@ -30,11 +31,12 @@ export class UserOrderComponent implements OnInit {
             name: ['', Validators.required],
             lastName: ['', Validators.required]
         });
+        this.rentService.rent.subscribe(rent => this.rent = rent);
     }
     get fs() { return this.formSearch.controls; }
     get f() { return this.form.controls; }
     
-    addUserOrder(): void{
+    addUserRent(): void{
 
     }
     enableSearch(){
@@ -69,7 +71,7 @@ export class UserOrderComponent implements OnInit {
     }
     checkout(){
         
-       this.router.navigate(['order', 'user-order', 'payment']);
+       this.router.navigate(['rent', 'user-rent', 'payment']);
       
     }
 

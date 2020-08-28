@@ -2,17 +2,16 @@
 
 import { AccountService } from './_services';
 import { User } from './_models';
-import { Order } from './_models/Order';
-import { OrderService } from './_services/order.service';
+import { Rent } from './_models/Rent';
+import { RentService } from './_services/rent.service';
 
 @Component({ selector: 'app', templateUrl: 'app.component.html' })
 export class AppComponent {
     user: User;
-    order: Order;
-    constructor(private accountService: AccountService, private orderService: OrderService) {
+    rent: Rent;
+    constructor(private accountService: AccountService, private rentService: RentService) {
         this.accountService.user.subscribe(x => this.user = x);
-        this.order = this.orderService.orderValue;
-    
+        this.rentService.rent.subscribe(rent => this.rent = rent);
     }
 
     logout() {

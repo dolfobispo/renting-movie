@@ -2,11 +2,12 @@ import { ProductItem } from './product-item';
 import { User } from './user';
 
 
-export class Order{
+export class Rent{
     id: number;
     items: ProductItem[] = [];
     moment: string;
-    total: number;
     rentStatus: number;
     client: User;
+    rentingDate: Date;
+    returningDate: Date;
 }
