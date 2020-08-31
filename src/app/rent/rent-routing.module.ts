@@ -3,9 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { RentComponent } from './rent.component';
 import { LayoutComponent } from './layout.component';
 import { PaymentComponent } from '../payment/payment.component';
-import { AngularMaterialModule } from '../angular-material.module';
 import { UserRentComponent } from '../user-rent/user-rent.component';
 import { UserRentModule } from '../user-rent/user-rent.module';
+import { SharedModule } from '../shared/shared.module';
+import { PaymentModule } from '../payment/payment.module';
 
 const routes: Routes = [
     {
@@ -21,7 +22,7 @@ const routes: Routes = [
     }
 ];
 @NgModule({
-    imports: [RouterModule.forChild(routes), UserRentModule, AngularMaterialModule],
-    exports: [RouterModule, AngularMaterialModule]
+    imports: [RouterModule.forChild(routes), UserRentModule, PaymentModule, SharedModule],
+    exports: [RouterModule]
 })
 export class RentRoutingModule { }

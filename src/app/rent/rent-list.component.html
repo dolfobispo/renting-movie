@@ -1,9 +1,7 @@
-<div class="pb-5">
+<div class="pb-2">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 p-4 bg-white rounded shadow-sm mb-4">
-
-          <!-- Shopping rent table -->
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -32,8 +30,8 @@
                         </div>
                       </div>
                       <td class="align-middle"><strong>{{item.product.price | currency:'BRL':true:'1.2-2' }}</strong></td>
-                      <td class="align-middle"><strong>{{item.product.quantity}}</strong></td>
-                      <td class="align-middle"><a (click)="removeToOrder(item.product)" class="text-dark"><i class="fa fa-trash"></i></a>
+                      <td class="align-middle"><strong>{{item.quantity}}</strong></td>
+                      <td class="align-middle"><a (click)="removeToRent(item.product)" class="text-dark"><i class="fa fa-trash"></i></a>
                       </td>
                   </tr>
               </tbody>
@@ -60,10 +58,10 @@
               </mat-form-field>
              
               <ul class="list-unstyled mb-4">
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Subtotal </strong><strong>{{getSubTotal() | currency:'BRL':true:'1.2-2' }}</strong></li>
-                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Taxas</strong><strong>{{calcTaxes(minDate,dateFormControl.value)| currency:'BRL':true:'1.2-2'}}</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Subtotal </strong><strong>{{ rent.getSubTotal() | currency:'BRL':true:'1.2-2' }}</strong></li>
+                <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Taxas</strong><strong>{{rent.getTaxes()| currency:'BRL':true:'1.2-2'}}</strong></li>
                 <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                  <h5 class="font-weight-bold">{{getTotal() | currency:'BRL':true:'1.2-2' }}</h5>
+                  <h5 class="font-weight-bold">{{rent.getTotal() | currency:'BRL':true:'1.2-2' }}</h5>
                 </li>
               </ul><button class="btn btn-dark rounded-pill py-2 btn-block" routerLink="/rent/user-rent" [disabled]="rent.items.length == 0">Preencher dados e Pagar</button>
             </div>

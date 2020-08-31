@@ -1,75 +1,61 @@
-<h2>Pagamento </h2>
+<div #alert></div>
 <div class="row">
-  <div class="col-75">
+  <div class="col-md-8 offset-md-2">
     <div class="container">
-      <form action="/action_page.php">
+      <form (ngSubmit)="onSubmit()">
       
         <div class="row">
-          <div class="col-50">
-            <h3>Billing Address</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-            <input type="text" id="email" name="email" placeholder="john@example.com">
-            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-            <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="New York">
-
-            <div class="row">
-              <div class="col-50">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="NY">
-              </div>
-              <div class="col-50">
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="10001">
-              </div>
-            </div>
+          <div class="col-lg-12">
+            <h3>Resumo do Pedido</h3>
+            <label for="fname"><i class="fa fa-user"></i> Cliente</label>
+            <input type="text" id="fname" name="firstname" value="{{rent.client.name}} {{rent.client.lastName}}" disabled>
           </div>
-
-          <div class="col-50">
-            <h3>Payment</h3>
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div>
-            <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-            <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-            <div class="row">
-              <div class="col-50">
-                <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
-              </div>
-              <div class="col-50">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
-              </div>
-            </div>
-          </div>
-          
         </div>
-        <label>
-        </label>
-        <input type="submit" value="Realizar o Pagamento" class="btn">
+        <div class="row">
+          <div class="col-50">
+            <div class="container">
+              <mat-form-field appearance="fill" class="mt-2">
+                <mat-label>Data de Devolução</mat-label>
+                <input matInput [matDatepicker]="picker1" [formControl]="dateFormControl" disabled>
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-50">
+              <div class="container">
+                <label>Cartões Aceitos</label>
+                <div class="icon-container">
+                  <i class="fa fa-cc-visa" style="color:navy;"></i>
+                  <i class="fa fa-cc-amex" style="color:blue;"></i>
+                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                  <i class="fa fa-cc-discover" style="color:orange;"></i>
+                  <label>Forma de Pagamento </label>
+                  <select class="form-control" (change)="selectOption($event.target.value)">
+                    <option value="">...</option>
+                    <option *ngFor="let method of keys(paymentMethod)" [ngValue]="paymentMethod[method]">{{method}}</option>
+                  </select>
+                </div>
+              </div>
+          </div>
+        </div>  
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="container mt-4">
+              <h4>Carrinho <span class="price" style="color:black"><b>{{rent.items.length}}</b></span></h4>
+              <div *ngFor="let item of rent.items">
+                <p><span class="movie-item-title">{{item.product.title}}</span> <span class="price">{{item.price | currency:'BRL':true:'1.2-2' }}</span></p>
+              </div>
+              <hr>
+              <p>Sub Total <span class="price"><b>{{rent.getSubTotal()| currency:'BRL':true:'1.2-2'}}</b></span></p>
+              <p>Taxas  <span class="price"><b>{{rent.getTaxes() | currency:'BRL':true:'1.2-2' }}</b></span></p>
+              <p><b>Total</b> <span class="price" style="color:black"><b>{{rent.getTotal()| currency:'BRL':true:'1.2-2' }}</b></span></p> 
+            </div>
+          </div>
+        </div>
+        <input type="submit"  (click)="scrollToElement(alert)" value="Realizar o Pagamento" class="btn">
       </form>
     </div>
   </div>
   <div class="col-25">
-    <div class="container">
-      <h4>Cart <span class="price" style="color:black"><b>4</b></span></h4>
-      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-      <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
-    </div>
-  </div>
 </div>

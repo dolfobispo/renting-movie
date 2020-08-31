@@ -11,7 +11,6 @@ export class UserRentComponent implements OnInit {
     formSearch: FormGroup;
     form: FormGroup;
     submitted = false;
-    user: User;
     redoSearch = false;
     rent: Rent;
     constructor(
@@ -19,9 +18,11 @@ export class UserRentComponent implements OnInit {
         private userService: AccountService,
         private formBuilder: FormBuilder,
         private alertService: AlertService,
-        private router: Router) {this.user = new User(); }
+        private router: Router) { }
 
     ngOnInit() {
+        this.rentService.rent.subscribe(rent => this.rent = rent);
+        this.checkCart();
         this.formSearch = this.formBuilder.group({
             cpf: ['', [Validators.required, Validators.minLength(11),
             Validators.maxLength(11)]]
@@ -31,20 +32,15 @@ export class UserRentComponent implements OnInit {
             name: ['', Validators.required],
             lastName: ['', Validators.required]
         });
-        this.rentService.rent.subscribe(rent => this.rent = rent);
     }
     get fs() { return this.formSearch.controls; }
     get f() { return this.form.controls; }
     
-    addUserRent(): void{
-
-    }
     enableSearch(){
         this.redoSearch = !this.redoSearch;
         this.fs.cpf.enable();
         this.f.name.setValue('');
         this.f.lastName.setValue('');
-        this.user = new User();
     }
     onSubmit(): User{
         this.submitted = true;
@@ -57,7 +53,7 @@ export class UserRentComponent implements OnInit {
        
         this.userService.findUserByCpf(this.fs.cpf.value).subscribe(
             user => {
-                this.user = user;
+                this.rent.client = user;
                 this.fs.cpf.disable();
                 this.redoSearch = !this.redoSearch;
                 this.f.name.setValue(user.name);
@@ -65,14 +61,19 @@ export class UserRentComponent implements OnInit {
             },
             error => {
                 this.alertService.error(error);
-                this.user = new User();
             });
 
     }
-    checkout(){
-        
+    checkCart(){
+        if (this.rent.items.length === 0){
+            this.router.navigate(['rent']);
+        }else if (this.rent.client !== null){
+           this.router.navigate(['rent', 'user-rent', 'payment']);
+        }
+
+    }
+    checkout(): void {
        this.router.navigate(['rent', 'user-rent', 'payment']);
-      
     }
 
 }

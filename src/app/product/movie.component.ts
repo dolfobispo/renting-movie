@@ -7,8 +7,8 @@ import { ProductService } from '../_services/product.service';
 import { ProductItem } from '../_models/product-item';
 
 
-@Component({ templateUrl: 'list.component.html', styleUrls: ['./style.css'] })
-export class ListComponent implements OnInit {
+@Component({ templateUrl: 'movie-list.component.html', styleUrls: ['./style.css'] })
+export class MovieComponent implements OnInit {
     products = null;
     rent = null;
     quantity = 1;
@@ -28,11 +28,9 @@ export class ListComponent implements OnInit {
     addItemToRent(product): void{
         const item = new ProductItem(this.quantity, product.price, product);
         this.rent.items.push(item);
-        this.rentService.setRent(this.rent).subscribe(rent => this.rent = rent);
     }
     removeToRent(product): void{
         this.rent.items =  this.rent.items.filter(p => p.product.id  !== product.id );
-        this.rentService.setRent(this.rent).subscribe(rent => this.rent = rent);
     }
     productInRent(product): boolean{
         const list = this.rent.items.filter(item => item.product.id === product.id);

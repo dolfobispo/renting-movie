@@ -1,7 +1,7 @@
 <div class="col-md-6 offset-md-3 mt-5">
     <form class="form-inline" [formGroup]="formSearch" (ngSubmit) = "onSubmit()">
         <div class="form-group mx-sm-4 mb-2">
-          <input type="text" class="form-control" maxlength="11" [ngClass]="{ 'is-invalid': submitted && fs.cpf.errors }" formControlName="cpf" placeholder="CPF do cliente">
+          <input type="text" class="form-control" min=0 maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'');" [ngClass]="{ 'is-invalid': submitted && fs.cpf.errors }" formControlName="cpf" placeholder="CPF do cliente">
           <div *ngIf="submitted && fs.cpf.errors" class="invalid-feedback">
             <div *ngIf="fs.cpf.errors.required">Por favor, Digite o CPF</div>
             <div *ngIf="fs.cpf.errors.minlength">Digite o CPF corretamente ( 11 números )</div>
@@ -15,11 +15,11 @@
         <div class="form-row" >
           <div class="form-group mx-sm-4 mb-2">
             <label for="name">Nome</label>
-            <input type="text" class="form-control"  formControlName="name" placeholder="" value="" disabled>
+            <input type="text" class="form-control"  formControlName="name" placeholder="" ([value])="rent.client.name" disabled>
           </div>
           <div class="form-group mx-sm-4 mb-2">
             <label for="lastName">Sobrenome</label>
-            <input type="text" class="form-control" value="" formControlName="lastName" placeholder="" disabled>
+            <input type="text" class="form-control" ([value])="rent.client.lastName" formControlName="lastName" placeholder="" disabled>
           </div>
         </div>
         <div class="form-row">

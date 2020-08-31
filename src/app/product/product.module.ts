@@ -4,20 +4,16 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { LayoutComponent } from './layout.component';
-import { ListComponent } from './list.component';
 import { AddEditComponent } from './add-edit.component';
-import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        ProductsRoutingModule,
-        SharedModule
+        ProductsRoutingModule
     ],
     declarations: [
         LayoutComponent,
-        ListComponent,
         AddEditComponent
     ]
 })

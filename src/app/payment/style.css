@@ -79,10 +79,6 @@ label {
   background-color: #45a049;
 }
 
-a {
-  color: #2196F3;
-}
-
 hr {
   border: 1px solid lightgrey;
 }
@@ -92,6 +88,10 @@ hr {
 span.price {
   float: right;
   color: grey;
+}
+.movie-item-title{
+  padding:5px;
+  color: #2196F3;
 }
 
 

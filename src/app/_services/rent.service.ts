@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 import { Rent } from '../_models/rent';
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@environments/environment';
 @Injectable({ providedIn: 'root' })
 export class RentService {
     private rentSubject: BehaviorSubject<Rent>;
     public rent: Observable<Rent>;
     constructor(
-
+        private http: HttpClient
     ) {
-        const rent = new Rent();
-        localStorage.setItem('rent', JSON.stringify(rent));
-        this.rentSubject = new BehaviorSubject<Rent>(JSON.parse(localStorage.getItem('rent')));
-        this.rent = this.rentSubject.asObservable();
+        this.init();
     }
 
-    setRent(rent: Rent): Observable<Rent>{
-        localStorage.setItem('rent', JSON.stringify(rent));
+    save( rent: Rent) {
+        return this.http.post(`${environment.apiUrl}/rents`, rent);
+    }
+    init() {
+        const obj = new Rent();
+        this.rentSubject = new BehaviorSubject<Rent>(obj);
+        this.rent = this.rentSubject.asObservable();
         return this.rent;
     }
 }

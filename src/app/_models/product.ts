@@ -4,7 +4,7 @@ export class Product{
     id: number;
     title: string;
     overview: string;
-    poster_path: string;
-    rent_price: number;
+    posterPath: string;
+    price: number;
     stock: Stock;
 }

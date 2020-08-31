@@ -4,7 +4,6 @@ import { Product } from './product';
 export class ProductItem{
     quantity: number;
     price: number;
-    subTotal: number;
     product: Product;
     
     constructor( quantity: number, price: number, product: Product)
@@ -12,10 +11,9 @@ export class ProductItem{
         this.quantity = quantity;
         this.price = price;
         this.product = product;
-        this.calcSubTotal();
     }
-    calcSubTotal(): void{
-        this.subTotal = this.price * this.quantity;
+    getSubTotal(): number{
+        return this.price * this.quantity;
     }
 
 }

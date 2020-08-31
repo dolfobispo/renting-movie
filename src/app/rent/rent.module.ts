@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RentComponent } from './rent.component';
 import { RentRoutingModule } from './rent-routing.module';
 import { LayoutComponent } from './layout.component';
+import { PaymentModule } from '../payment/payment.module';
 
 @NgModule({
     imports: [
